@@ -61,12 +61,12 @@ class PinterestPage extends StatelessWidget {
       ),
       childrenDelegate: SliverChildBuilderDelegate(
         childCount: product.length,
-        (context, index) => ItemContainer(context, product, index),
+        (context, index) => itemContainer(context, product, index),
       ),
     );
   }
 
-  Widget ItemContainer(
+  Widget itemContainer(
       BuildContext context, List<ProductModel> product, int index) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(22),

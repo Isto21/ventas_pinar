@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ventas_pinar/ventas_pinar/infra/models/product_model.dart';
@@ -59,13 +57,14 @@ class AddProduct extends StatelessWidget {
     return TextButton.icon(
         onPressed: () {
           if (!formKey.currentState!.validate()) return;
-            formKey.currentState?.save();
-          if (product == null || product == '') {
+          formKey.currentState?.save();
+          if (product.id == null) {
             productProvider.postProduct(product);
+            context.pop(true);
           } else {
             productProvider.editProduct(product);
+            context.pop(false);
           }
-          context.pop();
         },
         icon: const Icon(Icons.save),
         label: const Text('Guardar'));

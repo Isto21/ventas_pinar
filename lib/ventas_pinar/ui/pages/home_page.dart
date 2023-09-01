@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
 
   List<Widget> pages = [
     PinterestPage(),
-     SellProducts(),
+    SellProducts(),
     const Messages(),
     const OptionsPage()
   ];
@@ -31,7 +31,14 @@ class HomePage extends StatelessWidget {
         floatingActionButton: (index == 0)
             ? FloatingActionButton(
                 child: const Icon(Icons.add),
-                onPressed: () => context.push('/addProduct'),
+                onPressed: () async {
+                  final bool? response =
+                      await context.push<bool>('/addProduct');
+                  // print(response);
+                  if (response == true) {
+                    showSnackBar();
+                  } 
+                },
               )
             : null
         // body: Stack(children: [showProducts(), pinterestBar()]),
@@ -71,5 +78,12 @@ class HomePage extends StatelessWidget {
           // inactiveColor: Colors.amber),
           inactiveColor: Theme.of(context).disabledColor,
         ));
+  }
+
+  Widget showSnackBar() {
+    return const SnackBar(
+        content: Text(
+      "El producto fue añadido con éxito",
+    ));
   }
 }

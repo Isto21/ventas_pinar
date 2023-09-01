@@ -12,13 +12,7 @@ class SellProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.attach_money),
-            Text('Mis productos en venta'),
-          ],
-        ),
+        title: const Text('Mis productos en venta'),
       ),
       body: FutureBuilder(
         future: productsProvider.getProduct(),
@@ -39,10 +33,14 @@ class SellProducts extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return Dismissible(
           key: UniqueKey(),
-          background: Container(color: Colors.red,child: const Icon(Icons.delete_forever),),
-         onDismissed: (direction) => productsProvider.deleteProduct(products[index].id.toString()),
+          background: Container(
+            color: Colors.red,
+            child: const Icon(Icons.delete_forever),
+          ),
+          onDismissed: (direction) =>
+              productsProvider.deleteProduct(products[index].id.toString()),
           child: ListTile(
-            onTap: () => context.push('/AddProduct',extra: products[index]),
+              onTap: () => context.push('/AddProduct', extra: products[index]),
               title: Text(products[index].name),
               subtitle: Text(
                 products[index].id.toString(),

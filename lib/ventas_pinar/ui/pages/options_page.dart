@@ -11,8 +11,8 @@ class OptionsPage extends StatelessWidget {
         children: [
           CircleAvatar(
             backgroundColor: Theme.of(context).primaryColor,
-            child: const Icon(Icons.person,size: 80),
             radius: 80,
+            child: const Icon(Icons.person,size: 80),
           ),
           const SizedBox(height: 40,),
           Column(

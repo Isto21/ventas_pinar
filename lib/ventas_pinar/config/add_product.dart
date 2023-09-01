@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:ventas_pinar/ventas_pinar/infra/models/product_model.dart';
 import 'package:ventas_pinar/ventas_pinar/ui/providers/products_provider.dart';
 
