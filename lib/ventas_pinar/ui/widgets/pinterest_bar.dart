@@ -1,50 +1,50 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class PinterestBar extends StatelessWidget {
   final List<Items> items;
   Color activeColor = Colors.blue;
+  Color boxShadow = Colors.black;
   Color inactiveColor = Colors.black;
   PinterestBar({
     Key? key,
     required this.items,
     required this.activeColor,
+    required this.boxShadow,
     required this.inactiveColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => OptionSelected(),
-      child: Container(
-          height: 55,
-          width: 150,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            boxShadow: const <BoxShadow>[
-              BoxShadow(
-                  color: Colors.black,
-                  spreadRadius: -5,
-                  blurRadius: 2,
-                  blurStyle: BlurStyle.outer)
-            ],
+    return Container(
+        height: 55,
+        width: 150,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          boxShadow:  <BoxShadow>[
+            BoxShadow(
+                color: boxShadow,
+                spreadRadius: -5,
+                blurRadius: 2,
+                blurStyle: BlurStyle.outer)
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: List.generate(
+                items.length,
+                (index) => ItemsButton(
+                      index: index,
+                      items: items[index],
+                      activeColor: activeColor,
+                      inactiveColor: inactiveColor,
+                    )),
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: List.generate(
-                  items.length,
-                  (index) => ItemsButton(
-                        index: index,
-                        items: items[index],
-                        activeColor: activeColor,
-                        inactiveColor: inactiveColor,
-                      )),
-            ),
-          )),
-    );
+        ));
   }
 }
 

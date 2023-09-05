@@ -6,11 +6,13 @@ import 'package:ventas_pinar/ventas_pinar/ui/providers/products_provider.dart';
 class SellProducts extends StatelessWidget {
   SellProducts({super.key});
 
+  final scaffoldKey = GlobalKey<ScaffoldMessengerState>();
   ProductsProvider productsProvider = ProductsProvider();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         title: const Text('Mis productos en venta'),
       ),
@@ -40,7 +42,18 @@ class SellProducts extends StatelessWidget {
           onDismissed: (direction) =>
               productsProvider.deleteProduct(products[index].id.toString()),
           child: ListTile(
-              onTap: () => context.push('/AddProduct', extra: products[index]),
+              onTap: () async {
+                final bool? resp = await context.push<bool>('/AddProduct',
+                    extra: products[index]);
+                    if(resp==false) {
+                      showSnack();
+                    }
+                // if (resp == false) {
+                  // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      // content: Text("Producto editado con éxito")));
+                // }
+              },
+              // onTap: () => context.push('/AddProduct', extra: products[index]),
               title: Text(products[index].name),
               subtitle: Text(
                 products[index].id.toString(),
@@ -48,5 +61,11 @@ class SellProducts extends StatelessWidget {
         );
       },
     );
+  }
+  
+  void showSnack() {
+    final snack = const SnackBar(content: Text('El producto fue editado con exito'));
+      scaffoldKey.currentState?.showSnackBar(snack);
+
   }
 }

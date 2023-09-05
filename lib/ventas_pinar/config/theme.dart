@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  ThemeData appTheme() {
+
+  ThemeData appTheme({Color? color, Brightness? brightness}) {
     return ThemeData(
         appBarTheme: const AppBarTheme(
           centerTitle: true,
           ),
-        colorSchemeSeed: Colors.deepPurple
+        colorSchemeSeed: (color==null) ? Colors.deepPurple : color ,
+        useMaterial3: true,
+        brightness: brightness
             );
   }
+
+ 
 }
+
