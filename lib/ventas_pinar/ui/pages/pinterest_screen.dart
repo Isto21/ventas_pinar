@@ -35,7 +35,8 @@ class PinterestPage extends StatelessWidget {
                       height: 15,
                     ),
                     CircularProgressIndicator(
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                     )
                   ],
                 ),

@@ -84,9 +84,9 @@ class HomePage extends StatelessWidget {
                 icon: Icons.sms),
           ],
           // activeColor: Color.fromARGB(255, 77, 11, 6),
-          activeColor: Theme.of(context).colorScheme.onPrimaryContainer,
+          activeColor: Theme.of(context).colorScheme.primary,
           // inactiveColor: Colors.amber),
-          inactiveColor: Theme.of(context).disabledColor,
+          inactiveColor: Theme.of(context).colorScheme.inversePrimary,
           boxShadow: Theme.of(context).colorScheme.onPrimaryContainer,
         ));
   }
